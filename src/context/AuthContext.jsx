@@ -28,7 +28,7 @@ function ContextProvider({ children }) {
 
     const logOut = async () => {
         try {
-            return signOut(auth)
+            return await signOut(auth)
         } catch (error) {
             console.log("Logout error : ", error);
         }
