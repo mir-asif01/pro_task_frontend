@@ -3,10 +3,10 @@ import MainLayout from "../layout/MainLayout";
 import Login from "../pages/shared/Login";
 import Register from "../pages/shared/Register";
 import ErrorElement from "../pages/shared/ErrorElement";
-import DashboardLoyout from "../layout/DashboardLayout";
 import Home from "../pages/Main/Home";
-import AllTasks from "../pages/Dashboard/AllTasks";
-import DashboardHome from "../pages/Dashboard/DashboardHome";
+
+import AddReview from "../pages/Main/AddReview";
+import AllTasks from "../pages/Main/AllTasks";
 
 export const routes = createBrowserRouter([
     {
@@ -26,22 +26,16 @@ export const routes = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: "*",
-                element: <ErrorElement></ErrorElement>
-            }
-        ]
-    },
-    {
-        path: "dashboard",
-        element: <DashboardLoyout></DashboardLoyout>,
-        children: [
-            {
-                path: "/dashboard",
-                element: <DashboardHome></DashboardHome>
+                path: "/all-tasks",
+                element: <AllTasks></AllTasks>
             },
             {
-                path: "all-tasks",
-                element: <AllTasks></AllTasks>
+                path: "/add-review",
+                element: <AddReview></AddReview>
+            },
+            {
+                path: "*",
+                element: <ErrorElement></ErrorElement>
             }
         ]
     }
