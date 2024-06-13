@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom"
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from "../context/AuthContext";
 
 
 function TaskManagerLayout() {
@@ -10,6 +11,7 @@ function TaskManagerLayout() {
         setIsOpen(!isOpen);
     };
 
+    const { user } = useContext(AuthContext)
     return <>
         <div className="flex min-h-screen overflow-x-scroll bg-gray-100">
             <div className="flex">
@@ -59,9 +61,10 @@ function TaskManagerLayout() {
                         </button>
                     </div>
                     <nav className="mt-5">
-                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700" to="all-tasks">All Tasks</NavLink>
-                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700" to="create-task">New Task</NavLink>
-                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700" to="/">Homepage</NavLink>
+                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="all-tasks">All Tasks</NavLink>
+                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="create-task">New Task</NavLink>
+                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="/">Homepage</NavLink>
+                        <img src={user?.photoURL} className="size-16 ml-4 bg-slate-500 object-cover rounded hover:blur-[2px] duration-500" alt="user profile photo" />
                     </nav>
                 </div>
                 <div

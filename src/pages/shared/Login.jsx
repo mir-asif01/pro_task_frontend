@@ -10,7 +10,7 @@ function Login() {
         signInWithGoogle()
             .then(res => {
                 toast.success("Google Login Successfull")
-                navigate("/all-tasks")
+                navigate("task-manager")
             })
     }
 
@@ -18,7 +18,7 @@ function Login() {
         signInWithGithub()
             .then(res => {
                 toast.success("Github Login Successfull")
-                navigate("/all-tasks")
+                navigate("/task-manager")
             })
     }
 

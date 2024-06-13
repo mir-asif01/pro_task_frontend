@@ -5,8 +5,6 @@ import WhyUs from "./homeComponents/WhyUs"
 import Reviews from "./homeComponents/Reviews"
 
 function Home() {
-
-    const { user } = useContext(AuthContext)
     return <>
         <Banner></Banner>
         <WhyUs></WhyUs>

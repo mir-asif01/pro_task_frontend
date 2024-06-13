@@ -10,7 +10,7 @@ function Register() {
         signInWithGoogle()
             .then(res => {
                 toast.success("Google Registration Successfull")
-                navigate("/all-tasks")
+                navigate("/task-manager")
             })
     }
 
@@ -18,7 +18,7 @@ function Register() {
         signInWithGithub()
             .then(res => {
                 toast.success("Github Registration Successfull")
-                navigate("/all-tasks")
+                navigate("/task-manager")
             })
     }
 
