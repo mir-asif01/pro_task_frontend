@@ -2,14 +2,14 @@
 import { useContext, useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Navbar() {
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef();
-
+    const navigate = useNavigate()
     const { logOut, user, setUser } = useContext(AuthContext)
 
     const handleLogOut = () => {
@@ -17,6 +17,7 @@ function Navbar() {
             .then(res => {
                 toast.success("Logout Successful")
                 setUser(null)
+                navigate("/")
             })
     }
 
@@ -37,6 +38,7 @@ function Navbar() {
 
     return (
         <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white">
+            <Toaster position='top-center' toastOptions={{ duration: 2500 }} />
             <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-2xl font-semibold text-white transition-all duration-200 hover:scale-110">
                 <h2 className='font-semibold'>__ProTask__</h2>
             </div>

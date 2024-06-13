@@ -1,14 +1,16 @@
 import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
-
     const { signInWithGoogle, signInWithGithub, setUser } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleGoogleLogin = () => {
         signInWithGoogle()
             .then(res => {
-                toast.success("Googlre Login Successfull")
+                toast.success("Google Login Successfull")
+                navigate("/all-tasks")
             })
     }
 
@@ -16,6 +18,7 @@ function Login() {
         signInWithGithub()
             .then(res => {
                 toast.success("Github Login Successfull")
+                navigate("/all-tasks")
             })
     }
 
