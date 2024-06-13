@@ -18,6 +18,7 @@ function CreateTask() {
         const newTask = {
             ...data,
             userEmail: user?.email,
+            userPhoto: user?.photoURL,
             status: "to-do"
         }
 
