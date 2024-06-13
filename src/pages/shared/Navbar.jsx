@@ -50,7 +50,7 @@ function Navbar() {
                 {
                     user?.email ? <>
                         <li className="text-xl group flex  cursor-pointer flex-col">
-                            <NavLink to={"/all-tasks"}>Tasks</NavLink>
+                            <NavLink to={"/task-manager"}>Tasks</NavLink>
                             <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
                         </li>
                         <li className="text-xl group flex  cursor-pointer flex-col">

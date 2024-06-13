@@ -7,6 +7,9 @@ import Home from "../pages/Main/Home";
 
 import AddReview from "../pages/Main/AddReview";
 import AllTasks from "../pages/Main/AllTasks";
+import TaskManagerLayout from "../layout/TaskManagerLayout";
+import TaskManagerHome from "../pages/taskManager/TaskManagerHome";
+import CreateTask from "../pages/taskManager/CreateTask";
 
 export const routes = createBrowserRouter([
     {
@@ -26,12 +29,30 @@ export const routes = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: "/all-tasks",
+                path: "/add-review",
+                element: <AddReview></AddReview>
+            },
+            {
+                path: "*",
+                element: <ErrorElement></ErrorElement>
+            }
+        ]
+    },
+    {
+        path: "task-manager",
+        element: <TaskManagerLayout></TaskManagerLayout>,
+        children: [
+            {
+                path: "/task-manager",
+                element: <TaskManagerHome></TaskManagerHome>
+            },
+            {
+                path: "all-tasks",
                 element: <AllTasks></AllTasks>
             },
             {
-                path: "/add-review",
-                element: <AddReview></AddReview>
+                path: "create-task",
+                element: <CreateTask></CreateTask>
             },
             {
                 path: "*",

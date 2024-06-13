@@ -1,9 +1,9 @@
 import bannerImg from "../../../assets/bannerImg.webp"
 function WhyUs() {
     return <>
-        <div className="w-full sm:w-2/3 mx-auto mb-20">
+        <div className="w-full sm:w-2/3 sm:mx-auto mb-20">
             <div className="flex flex-col sm:flex-row justify-center items-center gap-10">
-                <div>
+                <div className="px-6">
                     <h1 className="text-xl font-semibold mb-3">WHY, __ProTask__</h1>
                     <p className="font-semibold text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ipsa asperiores tempora ab accusantium nobis non corrupti! Dolorum saepe accusantium vel distinctio unde, corrupti beatae. Velit veritatis, suscipit molestiae reprehenderit vero dolorem! Animi enim deserunt delectus quia culpa. Adipisci, ipsum.</p>
                     <button className="inline-flex mt-3 h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50" href="#">
