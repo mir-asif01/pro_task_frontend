@@ -1,16 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { NavLink } from "react-router-dom";
 
 function AllTasks() {
     const { user } = useContext(AuthContext)
     const [tasks, setTasks] = useState([])
-    // const [toDoTasks, setToDoTasks] = useState([])
+    const [toDoTasks, setToDoTasks] = useState([])
     const [onGoingTasks, setOnGoingTasks] = useState([])
     const [completedTasks, setCompletedTasks] = useState([])
-
-    // console.log(tasks);
-    // console.log(onGoingTasks);
-    // console.log(completedTasks);
 
     useEffect(() => {
         async function fetchTasks() {
@@ -32,17 +29,13 @@ function AllTasks() {
 
     useEffect(() => {
         function filterTasks() {
-            tasks.map(task => {
-                if (task?.status === "on-going") {
-                    setOnGoingTasks([...onGoingTasks, task])
-                }
-                if (task?.status === "completed") {
-                    setCompletedTasks([...completedTasks, task])
-                }
-            })
+            setToDoTasks(tasks.filter(t => t.status === "to-do"))
+            setOnGoingTasks(tasks.filter(t => t.status === "on-going"))
+            setCompletedTasks(tasks.filter(t => t.status === "completed"))
         }
         filterTasks()
     }, [tasks])
+
 
     //to-do,on-going,completed
 
@@ -50,27 +43,32 @@ function AllTasks() {
         e.dataTransfer.setData("taskId", taskId)
     }
 
-    const handlDropOnOnGoing = (e) => {
-        e.preventDefault()
+    const handleDropOnTodo = async (e) => {
         const taskId = e.dataTransfer.getData("taskId")
         const task = tasks.find(t => t._id === taskId)
-
-        const added_task = onGoingTasks.find(t => t._id == taskId)
-        if (!added_task?.title) {
-            task.status = "on-going"
-            setTasks(tasks.filter(t => t._id !== taskId))
-            setOnGoingTasks([...onGoingTasks, task])
-        }
-        if (added_task?.title) {
-            console.log("already added")
-            return
-        }
+        setToDoTasks([...toDoTasks, task])
+        setOnGoingTasks(onGoingTasks.filter(t => t._id !== taskId))
+        setCompletedTasks(completedTasks.filter(t => t._id !== taskId))
+        // console.log("To Do", task);
     }
-
-    const handlDropOnCompleted = (e) => {
+    const handlDropOnOnGoing = async (e) => {
         const taskId = e.dataTransfer.getData("taskId")
-        console.log(taskId)
+        const task = tasks.find(t => t._id === taskId)
+        setOnGoingTasks([...onGoingTasks, task])
+        setToDoTasks(toDoTasks.filter(t => t._id !== taskId))
+        setCompletedTasks(completedTasks.filter(t => t._id !== taskId))
+        // console.log("On going", task);
     }
+
+    const handlDropOnCompleted = async (e) => {
+        const taskId = e.dataTransfer.getData("taskId")
+        const task = tasks.find(t => t._id === taskId)
+        setCompletedTasks([...completedTasks, task])
+        setToDoTasks(toDoTasks.filter(t => t._id !== taskId))
+        setOnGoingTasks(onGoingTasks.filter(t => t._id !== taskId))
+        // console.log("Completed", task);
+    }
+
 
     const handleDragOver = (e) => {
         e.preventDefault()
@@ -92,12 +90,12 @@ function AllTasks() {
             <section>
                 <h1 className="text-3xl">Manage your <span className="text-green-600 my-10">__tasks__</span></h1>
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-center items-center overflow-scroll">
-                    <div className="border border-slate-900 py-7 rounded-md">
+                    <div onDrop={handleDropOnTodo} onDragOver={handleDragOver} className="border border-slate-900 py-7 rounded-md">
                         <h1 className="text-2xl font-semibold mb-4 text-center underline">To do list</h1>
                         <div className="flex flex-col justify-center items-center gap-4">
-                            {tasks.length === 0 ?
+                            {toDoTasks.length === 0 ?
                                 <p className="text-slate-500 font-bold">Drag and Drop a task!</p>
-                                : tasks.map(task => <TaskCard key={task._id} task={task}></TaskCard>)}
+                                : toDoTasks.map(task => <TaskCard key={task._id} task={task}></TaskCard>)}
                         </div>
                     </div>
                     <div onDrop={handlDropOnOnGoing} onDragOver={handleDragOver} className="border border-slate-900 py-7 rounded-md">
