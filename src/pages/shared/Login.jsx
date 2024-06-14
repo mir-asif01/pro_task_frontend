@@ -10,7 +10,7 @@ function Login() {
         signInWithGoogle()
             .then(res => {
                 toast.success("Google Login Successfull")
-                navigate("task-manager")
+                navigate("/task-manager")
             })
     }
 

@@ -63,6 +63,7 @@ function TaskManagerLayout() {
                     <nav className="mt-5">
                         <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="all-tasks">All Tasks</NavLink>
                         <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="create-task">New Task</NavLink>
+                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="profile">Profile</NavLink>
                         <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="/">Homepage</NavLink>
                         <img src={user?.photoURL} className="size-16 ml-4 bg-slate-500 object-cover rounded hover:blur-[2px] duration-500" alt="user profile photo" />
                     </nav>

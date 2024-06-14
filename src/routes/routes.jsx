@@ -10,6 +10,7 @@ import AllTasks from "../pages/Main/AllTasks";
 import TaskManagerLayout from "../layout/TaskManagerLayout";
 import TaskManagerHome from "../pages/taskManager/TaskManagerHome";
 import CreateTask from "../pages/taskManager/CreateTask";
+import Profile from "../pages/taskManager/Profile";
 
 export const routes = createBrowserRouter([
     {
@@ -44,11 +45,15 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: "/task-manager",
-                element: <TaskManagerHome></TaskManagerHome>
+                element: <AllTasks></AllTasks>
             },
             {
                 path: "all-tasks",
                 element: <AllTasks></AllTasks>
+            },
+            {
+                path: "profile",
+                element: <Profile></Profile>
             },
             {
                 path: "create-task",

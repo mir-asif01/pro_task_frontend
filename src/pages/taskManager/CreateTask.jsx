@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 function CreateTask() {
 
@@ -32,12 +33,14 @@ function CreateTask() {
             .then(res => {
                 console.log(res)
                 reset({ title: "", description: "", deadline: "", priority: "Low" })
+                toast.success("New task is created !!")
             })
 
         console.log(newTask);
     }
 
     return <div className="flex justify-center items-center">
+        <Toaster position="top-center" toastOptions={{ duration: 2500 }}></Toaster>
         <div className="w-full sm:w-1/2 mb-8 sm:mb-0">
             {/* Left side form */}
             <h2 className="text-2xl font-bold mb-6">Create A new <span className="text-green-600">Task__</span>
@@ -55,20 +58,18 @@ function CreateTask() {
                     <input
                         {...register("deadline")}
                         className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none" placeholder="Deadline" type="date" />
-                    <div className="relative">
-                        <select
-                            {...register("priority")}
-                            value={selectedOption}
-                            onChange={handleChange}
-                            className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
-                        >
-                            {options.map((option, index) => (
-                                <option key={index} value={option}>
-                                    {option}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <select
+                        {...register("priority")}
+                        value={selectedOption}
+                        onChange={handleChange}
+                        className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
+                    >
+                        {options.map((option, index) => (
+                            <option key={index} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </select>
                     <input type="submit" value="Add Task" className="inline-flex items-center justify-center rounded-md text-sm font-medium  h-10 px-4 py-2 w-full bg-red-600 text-white cursor-pointer" />
                 </div>
             </form>
