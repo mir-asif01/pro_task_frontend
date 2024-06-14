@@ -44,28 +44,47 @@ function AllTasks() {
         filterTasks()
     }, [tasks])
 
-    const handleOnDrag = (e, task) => {
-        e.dataTransfer.setData("application/json", JSON.stringify(task))
+    //to-do,on-going,completed
+
+    const handleOnDrag = (e, taskId) => {
+        e.dataTransfer.setData("taskId", taskId)
     }
 
-    const handleOnDrop = (e) => {
-        const taskJson = e.dataTransfer.getData("task")
-        const task = JSON.parse(taskJson)
-        console.log(task);
+    const handlDropOnOnGoing = (e) => {
+        e.preventDefault()
+        const taskId = e.dataTransfer.getData("taskId")
+        const task = tasks.find(t => t._id === taskId)
+
+        const added_task = onGoingTasks.find(t => t._id == taskId)
+        if (!added_task?.title) {
+            task.status = "on-going"
+            setTasks(tasks.filter(t => t._id !== taskId))
+            setOnGoingTasks([...onGoingTasks, task])
+        }
+        if (added_task?.title) {
+            console.log("already added")
+            return
+        }
+    }
+
+    const handlDropOnCompleted = (e) => {
+        const taskId = e.dataTransfer.getData("taskId")
+        console.log(taskId)
     }
 
     const handleDragOver = (e) => {
         e.preventDefault()
     }
     const TaskCard = ({ task }) => {
-        const { title, description } = task
+        const { title, description, status } = task
         return <div
             draggable={true}
-            onDragStart={(e) => handleOnDrag("task", task)}
+            onDragStart={(e) => handleOnDrag(e, task._id)}
             className="border border-gray-200 px-5 py-4 rounded-md"
         >
             <p className="text-gray-600 text-xl">{title}</p>
             <p className="text-gray-600 ">{description}</p>
+            <p className="text-xs">{status}</p>
         </div>
     }
     return (
@@ -81,7 +100,7 @@ function AllTasks() {
                                 : tasks.map(task => <TaskCard key={task._id} task={task}></TaskCard>)}
                         </div>
                     </div>
-                    <div onDrop={handleOnDrop} onDragOver={handleDragOver} className="border border-slate-900 py-7 rounded-md">
+                    <div onDrop={handlDropOnOnGoing} onDragOver={handleDragOver} className="border border-slate-900 py-7 rounded-md">
                         <h1 className="text-2xl font-semibold mb-4 text-center underline">On Going</h1>
                         <div className="flex flex-col justify-center items-center gap-4">
                             {onGoingTasks.length === 0 ?
@@ -89,7 +108,7 @@ function AllTasks() {
                                 : onGoingTasks.map(task => <TaskCard key={task._id} task={task}></TaskCard>)}
                         </div>
                     </div>
-                    <div className="border border-slate-900 py-7 rounded-md">
+                    <div onDrop={handlDropOnCompleted} onDragOver={handleDragOver} className="border border-slate-900 py-7 rounded-md">
                         <h1 className="text-2xl font-semibold mb-4 text-center underline">Completed</h1>
                         <div className="flex flex-col justify-center items-center gap-4">
                             {completedTasks.length === 0 ?
