@@ -5,17 +5,12 @@ function Footer() {
             <nav className="text-lg">
                 <ul className="flex h-full flex-wrap items-center justify-center gap-5">
                     <li className="cursor-pointer">
-                        <a>
+                        <a href="https://www.facebook.com/profile.php?id=61554728202989" target="_blank">
                             <Facebook className="size-6 fill-current" />
                         </a>
                     </li>
                     <li className="cursor-pointer">
-                        <a>
-                            <YouTube className="size-6 fill-current" />
-                        </a>
-                    </li>
-                    <li className="cursor-pointer">
-                        <a>
+                        <a href="https://x.com/mir_asif000111" target="_blank">
                             <Twitter className="size-6 fill-current" />
                         </a>
                     </li>
@@ -23,6 +18,7 @@ function Footer() {
             </nav>
             <aside className="text-center text-sm">
                 <p>&copy; 2024 ProTask. All Rights Reserved.</p>
+                <p>Mir Kamrul Ahsan Asif</p>
             </aside>
         </footer>
     );
