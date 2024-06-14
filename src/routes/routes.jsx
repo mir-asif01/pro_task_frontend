@@ -11,6 +11,7 @@ import TaskManagerLayout from "../layout/TaskManagerLayout";
 import TaskManagerHome from "../pages/taskManager/TaskManagerHome";
 import CreateTask from "../pages/taskManager/CreateTask";
 import Profile from "../pages/taskManager/Profile";
+import EditTask from "../pages/taskManager/EditTask";
 
 export const routes = createBrowserRouter([
     {
@@ -58,6 +59,11 @@ export const routes = createBrowserRouter([
             {
                 path: "create-task",
                 element: <CreateTask></CreateTask>
+            },
+            {
+                path: "edit-task/:id",
+                element: <EditTask></EditTask>,
+                loader: async ({ params }) => await fetch(`http://localhost:4000/tasks/${params.id}`)
             },
             {
                 path: "*",
