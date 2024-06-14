@@ -45,7 +45,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: "/task-manager",
-                element: <AllTasks></AllTasks>
+                element: <TaskManagerHome></TaskManagerHome>
             },
             {
                 path: "all-tasks",

@@ -61,6 +61,7 @@ function TaskManagerLayout() {
                         </button>
                     </div>
                     <nav className="mt-5">
+                        <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="/task-manager">Task Home</NavLink>
                         <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="all-tasks">All Tasks</NavLink>
                         <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="create-task">New Task</NavLink>
                         <NavLink className="block py-2.5 px-4 hover:bg-gray-700 my-3" to="profile">Profile</NavLink>
@@ -74,7 +75,7 @@ function TaskManagerLayout() {
                     onClick={toggleSidebar}
                 ></div>
             </div>
-            <div className="flex-1 p-10">
+            <div className="flex-1 p-10 overflow-x-scroll">
                 <Outlet></Outlet>
             </div>
         </div>
