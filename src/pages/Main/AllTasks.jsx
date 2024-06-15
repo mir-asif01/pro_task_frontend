@@ -11,7 +11,7 @@ function AllTasks() {
     useEffect(() => {
         async function fetchTasks() {
             try {
-                fetch(`http://localhost:4000/tasks?email=${user?.email}`)
+                fetch(`https://pro-task-backend.vercel.app/tasks?email=${user?.email}`)
                     .then(res => res.json())
                     .then(res => {
                         setTasks(res)

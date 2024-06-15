@@ -63,7 +63,7 @@ export const routes = createBrowserRouter([
             {
                 path: "edit-task/:id",
                 element: <EditTask></EditTask>,
-                loader: async ({ params }) => await fetch(`http://localhost:4000/tasks/${params.id}`)
+                loader: async ({ params }) => await fetch(`https://pro-task-backend.vercel.app/tasks/${params.id}`)
             },
             {
                 path: "*",

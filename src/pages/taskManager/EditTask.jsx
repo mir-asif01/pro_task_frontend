@@ -21,7 +21,7 @@ function CreateTask() {
         const newTask = {
             ...data,
         }
-        await fetch(`http://localhost:4000/tasks/${task?._id}`, {
+        await fetch(`https://pro-task-backend.vercel.app/tasks/${task?._id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
