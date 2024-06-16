@@ -12,6 +12,7 @@ import TaskManagerHome from "../pages/taskManager/TaskManagerHome";
 import CreateTask from "../pages/taskManager/CreateTask";
 import Profile from "../pages/taskManager/Profile";
 import EditTask from "../pages/taskManager/EditTask";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -32,7 +33,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/add-review",
-                element: <AddReview></AddReview>
+                element: <PrivateRoute><AddReview></AddReview></PrivateRoute>
             },
             {
                 path: "*",
@@ -42,28 +43,28 @@ export const routes = createBrowserRouter([
     },
     {
         path: "task-manager",
-        element: <TaskManagerLayout></TaskManagerLayout>,
+        element: <PrivateRoute><TaskManagerLayout></TaskManagerLayout></PrivateRoute>,
         children: [
             {
                 path: "/task-manager",
-                element: <TaskManagerHome></TaskManagerHome>
+                element: <PrivateRoute><TaskManagerHome></TaskManagerHome></PrivateRoute>
             },
             {
                 path: "all-tasks",
-                element: <AllTasks></AllTasks>
+                element: <PrivateRoute><AllTasks></AllTasks></PrivateRoute>
             },
             {
                 path: "profile",
-                element: <Profile></Profile>
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
             },
             {
                 path: "create-task",
-                element: <CreateTask></CreateTask>
+                element: <PrivateRoute><CreateTask></CreateTask></PrivateRoute>
             },
             {
                 path: "edit-task/:id",
-                element: <EditTask></EditTask>,
-                loader: async ({ params }) => await fetch(`https://pro-task-backend.vercel.app/tasks/${params.id}`)
+                element: <PrivateRoute><EditTask></EditTask></PrivateRoute>,
+                loader: async ({ params }) => await fetch(`http://localhost:4000/tasks/${params.id}`)
             },
             {
                 path: "*",

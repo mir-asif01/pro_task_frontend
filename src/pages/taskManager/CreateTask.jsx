@@ -23,7 +23,7 @@ function CreateTask() {
             status: "to-do"
         }
 
-        await fetch("https://pro-task-backend.vercel.app/task", {
+        await fetch("http://localhost:4000/task", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
