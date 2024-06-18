@@ -1,6 +1,6 @@
 import { app } from "../config/firebase.config.js"
 import { createContext, useEffect, useState } from "react";
-import { getAuth, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, GithubAuthProvider } from "firebase/auth";
+import { getAuth, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, GithubAuthProvider, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
@@ -26,6 +26,25 @@ function ContextProvider({ children }) {
         }
     }
 
+    const handleSignUpWithEmailPass = async (email, password) => {
+        try {
+            return await createUserWithEmailAndPassword(auth, email, password)
+        } catch (error) {
+            console.log("Email-pass SignUp error : ", error);
+        }
+    }
+
+    const updateDiplayName = async (name) => {
+        try {
+            return await updateProfile(auth.currentUser, {
+                displayName: name
+            }
+            )
+        } catch (error) {
+            console.log("DiplayName update error : ", error);
+        }
+    }
+
     const logOut = async () => {
         try {
             return await signOut(auth)
@@ -40,7 +59,7 @@ function ContextProvider({ children }) {
         return () => unsubscribe
     }, [user])
 
-    const authInfo = { user, setUser, signInWithGoogle, signInWithGithub, logOut }
+    const authInfo = { user, setUser, signInWithGoogle, signInWithGithub, handleSignUpWithEmailPass, updateDiplayName, logOut }
     return <>
         <AuthContext.Provider value={authInfo}>
             {children}
