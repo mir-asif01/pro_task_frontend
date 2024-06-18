@@ -13,7 +13,7 @@ function AllTasks() {
     useEffect(() => {
         async function fetchAllTasks() {
             try {
-                await fetch(`http://localhost:4000/tasks?email=${user?.email}`)
+                await fetch(`https://pro-task-backend.onrender.com/tasks?email=${user?.email}`)
                     .then(res => res.json())
                     .then(res => {
                         setTasks(res)
@@ -59,7 +59,7 @@ function AllTasks() {
         setToDoTasks([...toDoTasks, task])
         setOnGoingTasks(onGoingTasks.filter(t => t._id !== taskId))
         setCompletedTasks(completedTasks.filter(t => t._id !== taskId))
-        await fetch(`http://localhost:4000/tasks/${taskId}`, {
+        await fetch(`https://pro-task-backend.onrender.com/tasks/${taskId}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -85,7 +85,7 @@ function AllTasks() {
         setCompletedTasks(completedTasks.filter(t => t._id !== taskId))
 
 
-        await fetch(`http://localhost:4000/tasks/${taskId}`, {
+        await fetch(`https://pro-task-backend.onrender.com/tasks/${taskId}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -112,7 +112,7 @@ function AllTasks() {
         setCompletedTasks([...completedTasks, task])
         setToDoTasks(toDoTasks.filter(t => t._id !== taskId))
         setOnGoingTasks(onGoingTasks.filter(t => t._id !== taskId))
-        await fetch(`http://localhost:4000/tasks/${taskId}`, {
+        await fetch(`https://pro-task-backend.onrender.com/tasks/${taskId}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

@@ -5,7 +5,7 @@ function Row({ task, setTasks, tasks }) {
 
     const handleDelete = async (id) => {
         try {
-            await fetch(`http://localhost:4000/tasks/${task?._id}`, {
+            await fetch(`https://pro-task-backend.onrender.com/tasks/${task?._id}`, {
                 method: "DELETE",
                 headers: {
                     'content-type': "application/json"

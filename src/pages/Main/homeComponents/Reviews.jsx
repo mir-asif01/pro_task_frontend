@@ -5,7 +5,7 @@ function Reviews() {
     useEffect(() => {
         async function fetchReviews() {
             try {
-                await fetch("http://localhost:4000/reviews")
+                await fetch("https://pro-task-backend.onrender.com/reviews")
                     .then(res => res.json())
                     .then(res => setReviews(res))
             } catch (error) {

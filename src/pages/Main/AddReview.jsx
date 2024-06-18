@@ -9,7 +9,7 @@ function AddReview() {
     const { register, handleSubmit, reset } = useForm()
     const onSubmit = async (data) => {
         const review = data
-        await fetch("http://localhost:4000/add-review", {
+        await fetch("https://pro-task-backend.onrender.com/add-review", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

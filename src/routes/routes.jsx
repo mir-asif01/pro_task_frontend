@@ -64,7 +64,7 @@ export const routes = createBrowserRouter([
             {
                 path: "edit-task/:id",
                 element: <PrivateRoute><EditTask></EditTask></PrivateRoute>,
-                loader: async ({ params }) => await fetch(`http://localhost:4000/tasks/${params.id}`)
+                loader: async ({ params }) => await fetch(`https://pro-task-backend.onrender.com/tasks/${params.id}`)
             },
             {
                 path: "*",

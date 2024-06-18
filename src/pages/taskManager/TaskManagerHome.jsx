@@ -10,7 +10,7 @@ function TaskManagerHome() {
     useEffect(() => {
         async function fetchTasks() {
             try {
-                await fetch(`http://localhost:4000/tasks?email=${user?.email}`)
+                await fetch(`https://pro-task-backend.onrender.com/tasks?email=${user?.email}`)
                     .then(res => res.json())
                     .then(res => {
                         setTasks(res)

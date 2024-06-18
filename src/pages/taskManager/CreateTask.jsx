@@ -23,7 +23,7 @@ function CreateTask() {
             status: "to-do"
         }
 
-        await fetch("http://localhost:4000/task", {
+        await fetch("https://pro-task-backend.onrender.com/task", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
