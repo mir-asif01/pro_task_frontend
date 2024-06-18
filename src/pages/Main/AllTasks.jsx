@@ -7,9 +7,11 @@ function AllTasks() {
     const [toDoTasks, setToDoTasks] = useState([])
     const [onGoingTasks, setOnGoingTasks] = useState([])
     const [completedTasks, setCompletedTasks] = useState([])
+    const [singleTask, setTask] = useState({})
+
 
     useEffect(() => {
-        async function fetchTasks() {
+        async function fetchAllTasks() {
             try {
                 await fetch(`http://localhost:4000/tasks?email=${user?.email}`)
                     .then(res => res.json())
@@ -23,7 +25,7 @@ function AllTasks() {
                 }
             }
         }
-        fetchTasks()
+        fetchAllTasks()
     }, [user?.email])
 
     useEffect(() => {
@@ -34,6 +36,9 @@ function AllTasks() {
         }
         filterTasks()
     }, [tasks])
+
+
+    // fetch a single task by _id
 
 
     //to-do,on-going,completed
@@ -54,7 +59,16 @@ function AllTasks() {
         setToDoTasks([...toDoTasks, task])
         setOnGoingTasks(onGoingTasks.filter(t => t._id !== taskId))
         setCompletedTasks(completedTasks.filter(t => t._id !== taskId))
-        toast.success("Task moved to to-do list...")
+        await fetch(`http://localhost:4000/tasks/${taskId}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ updatedStatus: "to-do" })
+        }).then(res => res.json())
+            .then(res => {
+                toast.success("Task moved to to-do list...")
+            })
         // console.log("To Do", task);
     }
     const handlDropOnOnGoing = async (e) => {
@@ -69,7 +83,20 @@ function AllTasks() {
         setOnGoingTasks([...onGoingTasks, task])
         setToDoTasks(toDoTasks.filter(t => t._id !== taskId))
         setCompletedTasks(completedTasks.filter(t => t._id !== taskId))
-        toast.success("Task moved to on-going list...")
+
+
+        await fetch(`http://localhost:4000/tasks/${taskId}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ updatedStatus: "on-going" })
+        }).then(res => res.json())
+            .then(res => {
+                toast.success("Task moved to on-going list...")
+            })
+
+
         // console.log("On going", task);
     }
 
@@ -85,7 +112,16 @@ function AllTasks() {
         setCompletedTasks([...completedTasks, task])
         setToDoTasks(toDoTasks.filter(t => t._id !== taskId))
         setOnGoingTasks(onGoingTasks.filter(t => t._id !== taskId))
-        toast.success("Task moved to completed list...")
+        await fetch(`http://localhost:4000/tasks/${taskId}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ updatedStatus: "completed" })
+        }).then(res => res.json())
+            .then(res => {
+                toast.success("Task moved to completed list...")
+            })
         // console.log("Completed", task);
     }
 
