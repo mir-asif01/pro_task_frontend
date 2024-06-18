@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import toast, { Toaster } from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 function Register() {
 
@@ -31,6 +31,7 @@ function Register() {
                     .then(res => {
                         toast.success("User registration successful!!")
                         reset({ name: "", email: "", password: "" })
+                        navigate("/")
                     })
             })
     }
@@ -61,6 +62,9 @@ function Register() {
                 </div>
                 <input type="submit" className="text-lg rounded-xl relative p-3 block w-full bg-slate-900 text-white" value="Register" />
             </form>
+            <div className="text-center">
+                <p className="text-slate-800">Already have an account ? <NavLink className="font-bold text-green-700" to="/login">Login</NavLink> here.</p>
+            </div>
             <div className="flex items-center pt-4 space-x-2">
                 <div className="flex-1 h-px bg-gray-300"></div>
                 <p className="text-sm text-gray-600">Login with social accounts</p>

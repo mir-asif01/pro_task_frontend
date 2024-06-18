@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import Row from "./taskHomeComponents/Row"
+import { NavLink } from "react-router-dom"
 
 function TaskManagerHome() {
 
@@ -42,7 +43,12 @@ function TaskManagerHome() {
                 <tbody>
                     {/* Table rows */}
                     {
-                        tasks.map(task => <Row key={task._id} task={task} setTasks={setTasks} tasks={tasks}></Row>)
+                        tasks.length <= 0 ?
+                            <div className="p-5 flex flex-col justify-center items-center">
+                                <h1 className="text-red-500 text-xl">No task was created...<NavLink className="bg-slate-800 text-white px-3 py-2 rounded-md ml-3" to={"create-task"}>Create Here</NavLink></h1>
+
+                            </div> :
+                            tasks.map(task => <Row key={task._id} task={task} setTasks={setTasks} tasks={tasks}></Row>)
                     }
                 </tbody>
             </table>
