@@ -2,9 +2,10 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form"
 
 function Login() {
-    const { signInWithGoogle, signInWithGithub, setUser } = useContext(AuthContext)
+    const { signInWithGoogle, signInWithGithub, loginWithEmailPass, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleGoogleLogin = () => {
         signInWithGoogle()
@@ -22,27 +23,38 @@ function Login() {
             })
     }
 
+    const { register, handleSubmit, reset } = useForm()
+    const onSubmit = async ({ email, password }) => {
+        loginWithEmailPass(email, password)
+            .then(res => {
+                toast.success("Login succesfull")
+                reset({ email: "", password: "" })
+                navigate("/")
+            })
+    }
     return <>
         <div className="w-full sm:my-16 max-w-md p-8 space-y-3 rounded-xl border bg-white   font-sans mx-auto">
             <Toaster position="top-center" toastOptions={{ duration: 2500 }}></Toaster>
             <h1 className="text-3xl font-bold text-center text-slate-900">Login</h1>
             {/* Input fields and the form started */}
-            <form action="" className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="space-y-2 text-sm">
                     <label htmlFor="username" className="block ">
-                        Your name
+                        Your email
                     </label>
-                    <input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border border-slate-900 focus:outline-none focus:ring  " />
+                    <input
+                        {...register("email")}
+                        type="text" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border border-slate-900 focus:outline-none focus:ring  " />
                 </div>
                 <div className="space-y-2 text-sm">
                     <label htmlFor="password" className="block ">
                         Password
                     </label>
-                    <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border border-slate-900 focus:outline-none focus:ring  " />
+                    <input
+                        {...register("password")}
+                        type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border border-slate-900 focus:outline-none focus:ring  " />
                 </div>
-                <button className="text-lg rounded-xl relative p-3 block w-full bg-slate-900 text-white">
-                    Log In
-                </button>
+                <input type="submit" value="Login" className="text-lg rounded-xl relative p-3 block w-full bg-slate-900 text-white" />
             </form>
             <div className="flex items-center pt-4 space-x-2">
                 <div className="flex-1 h-px bg-gray-300"></div>
