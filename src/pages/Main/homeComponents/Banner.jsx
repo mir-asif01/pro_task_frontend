@@ -19,9 +19,11 @@ function Banner() {
                         </p>
                     </div>
                     <div className="space-x-4">
-                        <NavLink to={user?.email ? "" : "/login"} className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50" href="#">
-                            Let’s Explore
-                        </NavLink>
+                        <button disabled={user?.email ? true : false} className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50">
+                            <NavLink to={user?.email ? "" : "/login"} href="#">
+                                Let’s Explore
+                            </NavLink>
+                        </button>
                     </div>
                 </div>
             </div>
