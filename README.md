@@ -6,7 +6,7 @@ https://pro-task-ed52c.web.app/
 # backend server repository
 https://github.com/mir-asif01/pro_task_backend
 
-# Project Structure
+#  Project Description
   ## (public routes)
   - Home (Anyone can visit this route. This is also the landing page.)
   - Login/Register (In these routes user can login or register via email-password,github and google. After logging in the user will be redirected to the task management dashboard which is a private route)
