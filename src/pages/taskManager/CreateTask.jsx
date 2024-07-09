@@ -49,19 +49,21 @@ function CreateTask() {
                 <div className="flex flex-col space-y-4 mb-4">
                     <input
                         {...register("title")}
+                        required
                         className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
                         placeholder="Title" type="text" />
                     <input
-                        {...register("description")}
+                        {...register("description")} required
                         className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
                         placeholder="Description" type="text" />
                     <input
-                        {...register("deadline")}
+                        {...register("deadline")} required
                         className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none" placeholder="Deadline" type="date" />
                     <select
                         {...register("priority")}
                         value={selectedOption}
                         onChange={handleChange}
+                        required
                         className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
                     >
                         {options.map((option, index) => (
