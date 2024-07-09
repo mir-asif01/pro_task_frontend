@@ -29,7 +29,7 @@ function Login() {
             .then(res => {
                 toast.success("Login succesfull")
                 reset({ email: "", password: "" })
-                navigate("/")
+                navigate("/task-manager")
             })
     }
     return <>

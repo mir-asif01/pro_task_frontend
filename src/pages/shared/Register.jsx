@@ -31,7 +31,7 @@ function Register() {
                     .then(res => {
                         toast.success("User registration successful!!")
                         reset({ name: "", email: "", password: "" })
-                        navigate("/")
+                        navigate("/task-manager")
                     })
             })
     }
