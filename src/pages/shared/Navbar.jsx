@@ -85,7 +85,7 @@ function Navbar() {
                         {
                             user?.email ? <>
                                 <li className="cursor-pointer  px-6 py-2 text-white hover:bg-sky-600 ">
-                                    <NavLink to={"/all-tasks"}>Tasks</NavLink>
+                                    <NavLink to={"/task-manager"}>Tasks</NavLink>
                                 </li>
                                 <li className="cursor-pointer  px-6 py-2 text-white hover:bg-sky-600 ">
                                     <NavLink to={"/add-review"}>Add Review</NavLink>
